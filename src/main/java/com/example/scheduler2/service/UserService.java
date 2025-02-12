@@ -8,20 +8,17 @@ import com.example.scheduler2.dto.UserResponseDto;
 import com.example.scheduler2.entity.User;
 import com.example.scheduler2.exception.AuthenticationException;
 import com.example.scheduler2.exception.DuplicateEmailException;
-import com.example.scheduler2.exception.DuplicateUserAccountException;
 import com.example.scheduler2.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Transactional
     public UserResponseDto addUser(UserRequestDto userRequestDto) {
