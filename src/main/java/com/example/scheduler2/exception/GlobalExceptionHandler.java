@@ -18,19 +18,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
 
-    // 이메일 형식 예외
-    @ExceptionHandler(InvalidEmailFormatException.class)
-    public ResponseEntity<String> handleInvalidEmailFormatException(InvalidEmailFormatException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-    }
-
-    // 계정 및 비밀번호 불일치
+    // 이메일 및 비밀번호 불일치
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
         // HTTP 상태 코드 401(Unauthorized): 클라이언트가 인증되지 않았거나, 유효한 인증 정보가 부족하여 요청 거부
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
-    
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
     // 기타 예외 상황
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException e) {
