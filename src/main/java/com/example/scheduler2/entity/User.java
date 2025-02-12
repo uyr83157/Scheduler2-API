@@ -1,8 +1,13 @@
 package com.example.scheduler2.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 //import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 // @EntityListeners(AuditingEntityListener.class)
@@ -11,20 +16,35 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Member extends BaseEntity {
+@Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(max = 4, message = "이름은 4글자 이내여야 합니다.")
     @Column(nullable = false)
     private String name;
 
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "이메일 형식이 올바르지 않습니다.")
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(unique = true) // 추후 이메일로 대체
+    private String userAccount;
+
     @Column(nullable = false)
     private String password;
+
+    @CreatedDate
+    private LocalDateTime userCreatedAt;
+
+    @LastModifiedDate
+    private LocalDateTime userUpdatedAt;
 
 
 }
