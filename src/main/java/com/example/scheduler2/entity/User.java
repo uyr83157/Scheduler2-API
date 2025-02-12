@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 //import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,11 +21,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Size(max = 4, message = "이름은 4글자 이내여야 합니다.")
     @Column(nullable = false)
@@ -34,11 +36,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(unique = true) // 추후 이메일로 대체
-    private String userAccount;
 
     @Column(nullable = false)
-    private String password;
+    private String userPassword;
 
     @CreatedDate
     private LocalDateTime userCreatedAt;
