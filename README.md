@@ -11,9 +11,9 @@
 - BCrypt (at.favre.lib:bcrypt:0.10.2)
 
 ## 주요 변경점
-- DB 관리 방법을 JDBC에서 JAP로 전환
+- DB 관리 방법을 JDBC에서 JPA로 전환
 - 댓글 기능 추가
-- 회원가입, 로그인, 세션 기반 인증 추가
+- 회원가입, 로그인, 세션 기반 인증 추가 (기존 아이디+패스워드 검증 방법에서 세션 검증 방법으로 변경)
 - 비밀번호 암호화 추가
 - `@Builder`을 사용하여 서비스 계층에서의 setter 사용 최소화
 - 전체 일정 조회의 `GetMapping` 부분에서 `@RequestBody` 요청받는 것을 `@RequestParam`으로 변경
