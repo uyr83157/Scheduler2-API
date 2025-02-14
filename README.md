@@ -37,6 +37,10 @@ src/
  └── test/
 ```
 
+## ERD
+![image](https://github.com/user-attachments/assets/1a4d6446-a2f8-4fd4-beca-6ea50939d226)
+
+
 ## API 목록
 ### 사용자 API (`/users`)
 | 기능 | HTTP 메서드 | 엔드포인트 | 설명 |
@@ -330,3 +334,4 @@ src/
   ```
   "댓글 삭제에 성공했습니다."
   ```
+
